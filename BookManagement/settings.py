@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'research',
     'user',
     'rest_framework',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -142,6 +143,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# upload file/images setting
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# upload local file/images setting
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# Dropbox credentials
+DROPBOX_OAUTH2_TOKEN = os.getenv("DROPBOX_ACCESS_TOKEN")
+DROPBOX_ROOT_PATH = '/media'  # optional, default is root
+
+# Default file storage
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
