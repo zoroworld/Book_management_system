@@ -19,12 +19,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+#versioning
+api_1 = "api/v1/"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # API versioning
-    path('api/v1/books/', include('book.urls')),  # Book app URLs
-    path('api/v1/user/', include('user.urls')),
-
+    path(f'{api_1}books/', include('book.urls')),      # Book app URLs
+    path(f'{api_1}research/', include('research.urls')),  # Research app URLs
+    path(f'{api_1}user/', include('user.urls')),       # User app URLs
 ]
 
 # Serve media files during development

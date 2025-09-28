@@ -62,3 +62,4 @@ class BookDetailAPI(APIView):
             {"message": f"Book with book isbn {isbn} has been deleted."},
             status=status.HTTP_204_NO_CONTENT
         )
+
