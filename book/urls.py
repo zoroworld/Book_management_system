@@ -12,11 +12,11 @@ router.register(
 router.lookup_value_regex = '[^/]+'
 
 urlpatterns = [
-    path('list', BookListAPI.as_view(), name='api_book_list'),
+    path('', BookListAPI.as_view(), name='api_book_list'),
     path('<str:isbn>', BookDetailAPI.as_view(), name='api_book_detail'),
-    path('', include(router.urls)),
+    path('store/', include(router.urls)),
 ]
 
-# http://localhost:8000/api/v1/books/ff029b74dd6a48b8a093db3da51d9957/pdf/
-# http://localhost:8000/api/v1/books/ff029b74dd6a48b8a093db3da51d9957/cover/
-# http://localhost:8000/api/v1/books/ff029b74dd6a48b8a093db3da51d9957/stream-pdf/
+# http://localhost:8000/api/v1/books/store/ff029b74dd6a48b8a093db3da51d9957/pdf/
+# http://localhost:8000/api/v1/books/store/ff029b74dd6a48b8a093db3da51d9957/cover/
+# http://localhost:8000/api/v1/books/store/ff029b74dd6a48b8a093db3da51d9957/stream-pdf/

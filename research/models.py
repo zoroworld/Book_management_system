@@ -1,9 +1,14 @@
 from django.db import models
 import uuid
-from user.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 import os
+from django.conf import settings
+
+class Author(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='research_authors')
+    def __str__(self):
+        return self.user.username
 
 def validate_pdf(fieldfile_obj):
     # Ensure it's a PDF
@@ -39,7 +44,7 @@ class ResearchPaper(models.Model):
         null=True,
         validators=[validate_pdf]
     )
-    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name="research_papers")
     publication_date = models.DateField()
     rating = models.IntegerField(
         default=0,
@@ -56,7 +61,4 @@ class ResearchPaper(models.Model):
         return self.title
 
 
-class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='research_authors')
-    def __str__(self):
-        return self.user.name
+

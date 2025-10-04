@@ -1,12 +1,19 @@
 from django.db import models
 import uuid
-from user.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
 import os
+from django.conf import settings
+
+
 
 # Create your models here.
 # book : Author M:1
+
+class Author(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='book_authors')
+    def __str__(self):
+        return self.user.username
 
 class Book(models.Model):
     def validate_image(fieldfile_obj):
@@ -74,7 +81,7 @@ class Book(models.Model):
         default=0,
         validators=[MinValueValidator(0)]
     )
-    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+    author = models.ForeignKey('Author', on_delete=models.CASCADE,  related_name='books')
     update_at = models.DateTimeField(auto_now_add=True)
     delete_at = models.DateTimeField(null=True, blank=True)
 
@@ -86,8 +93,6 @@ class Book(models.Model):
         return self.total_stock > 0
 
 
-class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='book_authors')
-    def __str__(self):
-        return self.user.name
+
+
 

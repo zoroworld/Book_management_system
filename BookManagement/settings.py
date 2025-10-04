@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from datetime import timedelta
+
 
 # Load .env file
 load_dotenv()
@@ -42,12 +44,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user',
     'book',
     'research',
-    'user',
     'rest_framework',
+    'rest_framework_simplejwt',
     'storages',
 ]
+
+# own user do
+AUTH_USER_MODEL = 'user.CustomUser'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -154,3 +161,21 @@ DROPBOX_ROOT_PATH = '/media'  # optional, default is root
 
 # Default file storage
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+
+# Auth setup
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+#simple jwt setup
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),   # token expires after 30 min
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),      # refresh valid for 7 days
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+

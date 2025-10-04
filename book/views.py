@@ -11,10 +11,16 @@ from io import BytesIO
 from .models import Book
 import dropbox
 from django.conf import settings
+from rest_framework.permissions import IsAuthenticated,AllowAny
+
+
 
 
 # List all books or create a new book
 class BookListAPI(APIView):
+    permission_classes = [IsAuthenticated]
+
+
     def get(self, request):
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
@@ -30,6 +36,8 @@ class BookListAPI(APIView):
 
 # Retrieve, update, or delete a specific book
 class BookDetailAPI(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get_object(self, isbn):
         return get_object_or_404(Book, isbn=isbn)
 
@@ -74,6 +82,8 @@ class BookDetailAPI(APIView):
 dbx = dropbox.Dropbox(settings.DROPBOX_OAUTH2_TOKEN)
 
 class BookFileViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
     lookup_field = 'isbn'  # use ISBN instead of default pk
 
     @action(detail=True, methods=['get'])
@@ -91,7 +101,6 @@ class BookFileViewSet(viewsets.ViewSet):
         return Response({"detail": "Cover image not found"}, status=404)
 
 
-    @action(detail=True, methods=['get'], url_path='stream-pdf')
     @action(detail=True, methods=['get'], url_path='stream-pdf')
     def stream_pdf(self, request, isbn=None):
         book = get_object_or_404(Book, isbn=isbn)
