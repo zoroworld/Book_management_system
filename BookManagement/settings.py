@@ -199,3 +199,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://book-management-system-90ro.onrender.com",
+    "https://www.book-management-system-90ro.onrender.com",  # if you use www
+]
