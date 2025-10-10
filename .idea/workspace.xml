@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4cb88d8e-c373-42d6-8d24-de1739389d97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BookManagement/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement/db_routers.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement/db_routers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,5 +105,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/BookManagement/db_routers.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
