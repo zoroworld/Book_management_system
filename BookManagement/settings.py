@@ -14,6 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 from datetime import timedelta
+import dj_database_url
 
 
 # Load .env file
@@ -32,11 +33,17 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  os.getenv("DJANGO_DEBUG")
 
+
+
+
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'book-management-system-90ro.onrender.com'
 ]
+
+
+
 
 
 # Application definition
@@ -49,8 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
-    'book',
     'research',
+    'book',
     'rest_framework',
     'rest_framework_simplejwt',
     'storages',
@@ -95,18 +102,27 @@ WSGI_APPLICATION = 'BookManagement.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'mysql_db': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv("MYSQL_DATABASE"),
-        'USER': os.getenv("MYSQL_USER"),
-        'PASSWORD': os.getenv("MYSQL_PASSWORD"),
-        'HOST': 'db_mysql',
-        'PORT': '3306',
-    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # },
+    'default': dj_database_url.config(default=os.getenv("DATABASE_URL")),
+    # 'mysql_db': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': os.getenv("MYSQL_DATABASE"),
+    #     'USER': os.getenv("MYSQL_USER"),
+    #     'PASSWORD': os.getenv("MYSQL_PASSWORD"),
+    #     'HOST': 'db_mysql',
+    #     'PORT': '3306',
+    # },
+    # 'postgresql_db': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': os.getenv("POSTGRES_DB"),
+    #     'USER': os.getenv("POSTGRES_USER"),
+    #     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+    #     'HOST': 'db_postgresql',   # service name from docker-compose
+    #     'PORT': '5432',
+    # },
 }
 
 DATABASE_ROUTERS = ['BookManagement.db_routers.DbRouter']

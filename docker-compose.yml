@@ -1,3 +1,5 @@
+version: '3.9'
+
 services:
   web:
     build: .
@@ -11,7 +13,9 @@ services:
     depends_on:
       - db_mysql
       - db_postgresql
-
+    networks:
+      - main_network
+      - postgres_network
 
 
   # ----------------
@@ -29,7 +33,22 @@ services:
       - "3306:3306"
     volumes:
       - ./mysql_data:/var/lib/mysql
+    networks:
+      - main_network
 
+
+  db_postgresql:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
 
 
   # ----------------
@@ -46,16 +65,28 @@ services:
       - "8081:80"
     depends_on:
       - db_mysql
+    networks:
+      - main_network
 
+  pg_admin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - db_postgresql
+    networks:
+      - postgres_network
 
-    # postgresql
-  db_postgresql:
-      image: postgres:15
-      environment:
-        POSTGRES_DB: mydb
-        POSTGRES_USER: myuser
-        POSTGRES_PASSWORD: mypassword
-      volumes:
-        - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
+  mysql_data:
 
-
+networks:
+  main_network:
+    driver: bridge
+  postgres_network:
+    driver: bridge

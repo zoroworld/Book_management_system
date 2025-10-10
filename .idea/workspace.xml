@@ -6,8 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4cb88d8e-c373-42d6-8d24-de1739389d97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookManagement/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookManagement/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book/migrations/0002_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qterminal_bookmarks.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/research/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/research/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/research/migrations/0002_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/migrations/0001_initial.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +29,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/user/migrations/0001_initial.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
